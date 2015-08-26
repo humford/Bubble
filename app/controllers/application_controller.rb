@@ -26,10 +26,24 @@ class ApplicationController < Sinatra::Base
 	  erb :navbar
   end
 
+	get "/create_bubble" do
+	erb :newbubble
+  end
+
+	get "/create_post" do
+	erb :newpost
+  end
+
   post "/new_user" do
 	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
     @user.save
     redirect "/"
+  end
+
+  post "/new_bubble" do
+  end
+
+  post "/new_post" do
   end
 
   get "/profile/:id" do
@@ -64,12 +78,6 @@ class ApplicationController < Sinatra::Base
 
   get "/login_form" do
 	  erb :loginform
-  end
-
-  post "/new_bubble" do
-  end
-
-  post "/new_post" do
   end
 
 end
