@@ -1,0 +1,113 @@
+== Description
+Tux dresses up sinatra in a shell. Use it to interact with your helpers, view rendering and
+your app's response objects. Tux also gives you commands to view your app's routes and settings.
+
+== Install
+Install the gem with:
+
+    gem install tux
+
+== Usage
+
+Start with:
+
+    $ tux
+
+If your app's config file isn't config.ru, specify with -c
+
+    $ tux -c app.ru
+
+To interact with your helpers:
+
+    >> app.my_helper_method
+    ...
+
+To interact with any built-in sinatra methods i.e. request and response specific helper
+methods:
+
+    # depends on request
+    >> app.uri '/'
+    => "http://:/"
+
+    # depends on response
+    >> app.headers
+    => {"Content-Type"=>"text/html"}
+
+For the above to work, tux sets up default empty request and response objects. To try the helpers
+with custom requests and responses:
+
+    >> app.request = Sinatra::Request.new({})
+    >> app.response = Sinatra::Response.new
+
+To interact with your views:
+
+    >> app.erb :my_template
+    => 'template rendered'
+
+    # also
+    >> app.haml
+    >> app.markdown
+    ...
+
+Tux let's you you make requests and interact with rack response objects thanks to
+{rack-test}[https://github.com/brynary/rack-test]:
+
+    >> get '/'
+    => #<Rack::MockResponse:0x13d452c @headers={"Content-Type"=>"text/html;charset=utf-8",
+    "Content-Length"=>"4"}, @errors="127.0.0.1 - - [05/Apr/2011 02:22:27] \"GET / \" 200 4
+    0.0015\n", @status=200, @original_headers={"Content-Type"=>"text/html;charset=utf-8",
+    "Content-Length"=>"4"}, @body="dude">
+
+    >> puts last_response.body
+    dude
+
+    >> post '/create'
+    ...
+
+To see the full list of rack-test actions you can make
+
+    >> rack.actions
+    => [:request, :get, :post, :put, :delete, :head, :follow_redirect!, :header, :set_cookie,
+    :clear_cookies, :authorize, :basic_authorize, :digest_authorize, :last_response, :last_request]
+
+Tux also comes with commands to give you a good overview of your app
+
+    >> routes
+    HEAD  "/"
+    HEAD  /book/:id
+    GET   "/"
+    GET   /book/:id
+
+    >> settings
+    absolute_redirects  true
+    add_charset         [/^text\//, "application/javascript", "application/xml",
+    "application/xhtml+xml"]
+    app_file            "./sample.rb"
+    bind                "0.0.0.0"
+    default_encoding    "utf-8"
+    dump_errors         true
+    empty_path_info     nil
+    environment         :development
+    lock                false
+    logging             false
+    method_override     false
+    port                4567
+    prefixed_redirects  false
+    public              "/my/path/public"
+    raise_errors        false
+    reload_templates    true
+    root                "/my/path"
+    run                 false
+    running             false
+    server              ["thin", "mongrel", "webrick"]
+    session_secret      "XXX"
+    sessions            false
+    show_exceptions     true
+    static              true
+    views               "/my/path/views"
+
+== Configure
+
+Since tux is a {ripl shell}[http://github.com/cldwalker/ripl], tux is highly configurable. You can
+create tux commands in the format tux-COMMAND and enhance your shell by adding ripl plugins to
+~/.riplrc. Read {ripl's readme}[http://github.com/cldwalker/ripl#readme] for more.
