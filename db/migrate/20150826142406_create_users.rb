@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration
 		  t.string :password
 		  t.string :realname
 		  t.string :email
-		  t.datetime :user_created
 		  t.string :phone
 		  t.integer :user_score
   end
