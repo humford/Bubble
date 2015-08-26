@@ -32,6 +32,17 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get "/profile/:id" do
+    @user = User.find_by({:id => params[:id]})
+#    @user_tweets = Tweet.where({:user_id => params[:id]})
+    erb :profile
+  end
+
+  get "/bubble/:id" do
+	  @bubble = Bubble.find_by({:id => params[:id]})
+	  erb :bubble
+  end
+
   post "/login" do
 	 @user = User.find_by({:username => params[:username], :password => params[:password]})
     if @user #exists
@@ -41,10 +52,9 @@ class ApplicationController < Sinatra::Base
       #throw an error
       @account_fail = true
 		puts "LOGIN FAILED"
-#      redirect "/"
+      redirect "/"
     end
-#    redirect "/profile/#{@user.id}"
-	 redirect "/"
+    redirect "/profile/#{@user.id}"
   end
 
   get "/logout" do
@@ -54,6 +64,12 @@ class ApplicationController < Sinatra::Base
 
   get "/login_form" do
 	  erb :loginform
+  end
+
+  post "/new_bubble" do
+  end
+
+  post "/new_post" do
   end
 
 end
