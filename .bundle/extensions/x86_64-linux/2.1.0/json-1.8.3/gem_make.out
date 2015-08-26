@@ -1,0 +1,10 @@
+/usr/local/opt/rbenv/versions/2.1.5/bin/ruby -r ./siteconf20150826-19530-1dml0gs.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+make "DESTDIR=" install
+installing default libraries
