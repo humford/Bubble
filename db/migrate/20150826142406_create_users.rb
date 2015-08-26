@@ -9,5 +9,6 @@ class CreateUsers < ActiveRecord::Migration
 		  t.integer :user_score
 
 		  t.timestamps null: false
+	  end
   end
 end

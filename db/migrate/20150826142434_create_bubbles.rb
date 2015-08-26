@@ -7,7 +7,7 @@ class CreateBubbles < ActiveRecord::Migration
           t.integer :bubble_votes
 
 			 t.timestamps null: false
-    end
+		end
   end
   def down
       drop_table :bubbles

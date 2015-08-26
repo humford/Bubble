@@ -9,5 +9,6 @@ class CreatePosts < ActiveRecord::Migration
 		  t.string :post_type
 
 		  t.timestamps null: false
+	  end
   end
 end

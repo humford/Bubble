@@ -5,5 +5,6 @@ class CreateMemberships < ActiveRecord::Migration
 		  t.integer :bubble_id
 
 		  t.timestamps null: false
+	  end
   end
 end
