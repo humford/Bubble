@@ -8,5 +8,7 @@ class CreatePosts < ActiveRecord::Migration
 		  t.integer :post_score
 		  t.string :post_topics
 		  t.string :post_type
+
+		  t.timestamps null: false
   end
 end

@@ -6,6 +6,8 @@ class CreateBubbles < ActiveRecord::Migration
           t.datetime :bubble_created
           t.integer :bubble_creator_id
           t.integer :bubble_votes
+
+			 t.timestamps null: false
     end
   end
   def down

@@ -7,6 +7,8 @@ class CreateComments < ActiveRecord::Migration
           t.string :comment_media
           t.integer :comment_score
           t.datetime :comment_created
+
+			 t.timestamps null: false
     end
   end
   def down
