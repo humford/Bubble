@@ -23,5 +23,10 @@ class ApplicationController < Sinatra::Base
   get "/navbar" do
 	  erb :navbar
   end
+
+  post "/new_user" do
+	  redirect "/"
+  end
+
 end
 
