@@ -9,7 +9,7 @@ class CreateComments < ActiveRecord::Migration
           t.datetime :comment_created
 
 			 t.timestamps null: false
-    end
+    	end
   end
   def down
       drop_table :comments
