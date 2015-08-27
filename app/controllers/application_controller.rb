@@ -33,6 +33,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/post/create" do
+
+      @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
+      @post.save
+      redirect "/"
+
   end
 
   get "/bubble/new" do

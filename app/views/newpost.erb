@@ -25,18 +25,23 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<br>
-				<br>
-				<br>
-				<br>
-				<form action="/new_post" method="POST" align="center">
-				 	<div class="input-group">
-              		<input type="text" class="form-control" placeholder="New Post">
+
+				<form action="/post/create" method="POST" align="center">
+				   <div class="input-group">
+
+              		   <input type="text" name="post_text" class="form-control" placeholder="Enter your message here">
+                       <input type="file" name="post_media" class="form-control" placeholder="Post media here">
+                       <input type="text" name="post_topic" class="form-control" placeholder="What is the topic of this post?">
+                       <input type="text" name="post_type" class="form-control" placeholder="What type of post is this?">
+
               		<span class="input-group-btn">
-                		<button class="btn btn-default" type="submit">Create</button>
+                		<button class="btn btn-default" type="submit">Post</button>
+
               		</span>
-            	</div>
+            	   </div>
 				 </form>
+
+
 			</div>
 			<div class="col-md-4"></div>
 	   </div>
