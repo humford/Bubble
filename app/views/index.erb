@@ -17,17 +17,45 @@
       $("#navbar").load("/navbar");
     });
     </script>
-
+    <style>
+      body {
+        background: #5b6ee1;
+        color: #222034;
+      }
+      .bub_panel {
+        background: #5fcde4;
+        box-shadow: 8px 8px 4px rgba(34, 32, 52, 0.5);
+      }
+      .bub_bubble {
+        background: #5fcde4;
+        border-radius: 50%;
+	      width: 256px;
+	      height: 256px;
+        box-shadow: 4px 4px 2px rgba(34, 32, 52, 0.5);
+      }
+    </style>
   </head>
+
   <body>
     <div id="navbar"></div>
-	 <div class="container">
-		 <div class="row">
-			 <div class="col-md-8"></div>
-			 <div class="col-md-8">
-			 </div>
-			 <div class="col-md-4"></div>
-		 </div>
-	 </div>
+	  <div class="container">
+			<div class="col-md-2 bub_panel">
+        Sidebar<br>
+        SIDEBAR<br>
+        sidebar.<br>
+        <br>
+        ...<br>
+        <br>
+        <br>
+        <br>
+        hi<br>
+			</div>
+			<div class="col-md-10">
+        Main
+        <div class="bub_bubble" style="transform: translate(40px, 40px);">
+          bubbly!
+        </div>
+      </div>
+	  </div>
   </body>
 </html>
