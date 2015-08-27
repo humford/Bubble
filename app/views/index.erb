@@ -11,51 +11,58 @@
 
 	 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
-
     <script>
     $(function(){
       $("#navbar").load("/navbar");
     });
     </script>
-    <style>
-      body {
-        background: #5b6ee1;
-        color: #222034;
-      }
-      .bub_panel {
-        background: #5fcde4;
-        box-shadow: 8px 8px 4px rgba(34, 32, 52, 0.5);
-      }
-      .bub_bubble {
-        background: #5fcde4;
-        border-radius: 50%;
-	      width: 256px;
-	      height: 256px;
-        box-shadow: 4px 4px 2px rgba(34, 32, 52, 0.5);
-      }
-    </style>
-  </head>
 
+  </head>
   <body>
-    <div id="navbar"></div>
-	  <div class="container">
-			<div class="col-md-2 bub_panel">
-        Sidebar<br>
-        SIDEBAR<br>
-        sidebar.<br>
-        <br>
-        ...<br>
-        <br>
-        <br>
-        <br>
-        hi<br>
-			</div>
-			<div class="col-md-10">
-        Main
-        <div class="bub_bubble" style="transform: translate(40px, 40px);">
-          bubbly!
-        </div>
-      </div>
-	  </div>
+	 <div class="container">
+		 <div id="navbar"></div>
+		 <div class="row">
+			 <div class="col-md-1"></div>
+			 <div class="col-md-10">
+				 <br>
+				 <br>
+				 <br>
+				 <br>
+				 <% if session[:user_id] == nil %>
+				 	<div class="jumbotron">
+  						<h1 class="text-center">Welcome to Bubble!</h1>
+  						<p class="text-center">A hub for topics, people, places and ideas.</p>
+  						<p class="text-center"><a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a></p>
+				 	</div>
+				 <% else %>
+				 <form action="/new_bubble" method="POST" align="center">
+				   <div class="input-group">
+              		<input type="text" class="form-control" placeholder="New Bubble">
+              		<span class="input-group-btn">
+                		<button class="btn btn-default" type="submit">Create</button>
+              		</span>
+            	</div>
+				 </form>
+				 <br>
+				 <form action="/new_post" method="POST" align="center">
+				 	<div class="input-group">
+              		<input type="text" class="form-control" placeholder="New Post">
+              		<span class="input-group-btn">
+                		<button class="btn btn-default" type="submit">Create</button>
+              		</span>
+            	</div>
+				 </form>
+				 <% end %>
+			 </div>
+			 <div class="col-md-1"></div>
+		 </div>
+		 <div class="row">
+			 <div class="col-md-1"></div>
+			 <div class="col-md-10">
+
+			 </div>
+			 <div class="col-md-1"></div>
+		 </div>
+	 </div>
   </body>
 </html>
