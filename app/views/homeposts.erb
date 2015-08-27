@@ -1,8 +1,18 @@
+<% if session[:user_id] != nil %>
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<% @posts.each |post| do %>
+		<% @posts.each do |post| %>
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+				<h3 class="panel-title"><%=post.user.username %></h3>
+  			</div>
+  			<div class="panel-body">
+				<%=post.post_text %>
+  			</div>
+		</div>
 		<% end %>
 	</div>
 	<div class="col-md-1"></div>
 </div>
+<% end %>
