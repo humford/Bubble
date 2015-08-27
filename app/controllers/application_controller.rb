@@ -17,13 +17,13 @@ class ApplicationController < Sinatra::Base
   get "/" do
 	  erb :index
   end
-  
-  get "/signup" do
-    erb :signup
-  end
 
   get "/navbar" do
 	  erb :navbar
+  end
+
+  get "/bubble/new" do
+      erb :newbubble
   end
 
   post "/bubble/create" do
@@ -32,21 +32,16 @@ class ApplicationController < Sinatra::Base
       redirect "/bubble/show/#{@bubble.id}"
   end
 
-  post "/post/create" do
-  end
-
-  get "/bubble/new" do
-      erb :newbubble
+  get "/bubble/show/:id" do
+	  @bubble = Bubble.find_by({:id => params[:id]})
+	  erb :bubble
   end
 
   get "/post/new" do
 	erb :newpost
   end
 
-  post "/user/create" do
-	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
-    @user.save
-    redirect "/"
+  post "/post/create" do
   end
 
   get "/profile/show/:id" do
@@ -55,12 +50,17 @@ class ApplicationController < Sinatra::Base
     erb :profile
   end
 
-  get "/bubble/show/:id" do
-	  @bubble = Bubble.find_by({:id => params[:id]})
-	  erb :bubble
+  get "/user/new" do
+    erb :signup
   end
 
-  post "/login" do
+  post "/user/create" do
+	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
+    @user.save
+    redirect "/"
+  end
+
+  post "/user/login" do
 	 @user = User.find_by({:username => params[:username], :password => params[:password]})
     if @user #exists
       #start session
@@ -74,7 +74,7 @@ class ApplicationController < Sinatra::Base
     redirect "/profile/show/#{@user.id}"
   end
 
-  get "/logout" do
+  get "/user/logout" do
     session.clear
     redirect "/"
   end

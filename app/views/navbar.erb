@@ -37,10 +37,10 @@
       </form>
 		<ul class="nav navbar-nav navbar-right">
 			<% if session[:user_id] == nil %>
-		    <li><a href="/signup">Sign Up</a></li>
-          <li><a href="/signup">Sign In</a></li>
+		    <li><a href="/user/new">Sign Up</a></li>
+          <li><a href="/user/new">Sign In</a></li>
 			<% else %>
-			 <li><a href="/logout">Log Out</a></li>
+			 <li><a href="/user/logout">Log Out</a></li>
 			<% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
