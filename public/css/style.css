@@ -17,12 +17,12 @@ body {
     background-color: #00a7f2;
     color:aliceblue;
     outline-color: #00a7f2;
-    
+
 }
 
 .text-center{
     color:aliceblue;
-    
+
 }
 #shadow{
 text-shadow: -2px -2px 2px rgba(0, 0, 0, 1);
