@@ -48,18 +48,18 @@ class ApplicationController < Sinatra::Base
 
   end
 
+  post "/user/create" do
+	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
+    @user.save
+    redirect "/"
+  end
+
   get "/bubble/new" do
       erb :newbubble
   end
 
   get "/post/new" do
 	erb :newpost
-  end
-
-  post "/user/create" do
-	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
-    @user.save
-    redirect "/"
   end
 
   get "/profile/show/:id" do
@@ -90,10 +90,6 @@ class ApplicationController < Sinatra::Base
   get "/logout" do
     session.clear
     redirect "/"
-  end
-
-  get "/login_form" do
-	  erb :loginform
   end
 
 end
