@@ -50,7 +50,7 @@ class ApplicationController < Sinatra::Base
     erb :profile
   end
 
-  get "/user/new" do
+  get "/signup" do
     erb :signup
   end
 
@@ -60,7 +60,7 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
-  post "/user/login" do
+  post "/login" do
 	 @user = User.find_by({:username => params[:username], :password => params[:password]})
     if @user #exists
       #start session
@@ -74,7 +74,7 @@ class ApplicationController < Sinatra::Base
     redirect "/profile/show/#{@user.id}"
   end
 
-  get "/user/logout" do
+  get "/logout" do
     session.clear
     redirect "/"
   end
