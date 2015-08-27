@@ -1,14 +1,29 @@
-@import url(http://fonts.googleapis.com/css?family=Orbitron:400,900);
+@import url(https://fonts.googleapis.com/css?family=Passion+One);
 h1{
-  font-family: 'Orbitron', sans-serif;
-  font-size: 500%;
-  color: white;
+    font-family: 'Passion One', cursive;
+    font-size: 500%;
+    color: aliceblue;
 }
 #landing{
-  font-family: 'Orbitron', sans-serif;
-  color: white;
+    font-family: 'Helvetica', sans-serif;
+    color: aliceblue;
 }
 
 body {
     background-color: #00CCFF;
+}
+
+.jumbotron{
+    background-color: #00CCFF;
+    color:aliceblue;
+    outline-color: #00CCFF;
+
+}
+
+.text-center{
+    color:aliceblue;
+}
+
+.navbar-brand{
+    color:aliceblue;
 }
