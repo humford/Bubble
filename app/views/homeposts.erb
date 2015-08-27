@@ -5,15 +5,15 @@
 		<% @posts.reverse.each do |post| %>
 		<div class="panel panel-default">
   			<div class="panel-heading">
-				<h3 class="panel-title"><%=post.user.username %></h3>
+				<h3 class="panel-title"><strong><%=post.user.username %></strong></h3>
   			</div>
   			<div class="panel-body">
 				<%=post.post_text %>
   			</div>
 			<div class="panel-footer">
-			Posted in: <% post.bubbles.reverse.each do |bubble|%>
+			<strong>Posted in:</strong> <% post.bubbles.reverse.each do |bubble|%>
 			<%=bubble.bubble_name + "  " %>
-			<% end %></div>
+			<% end %> at <%=post.created_at%></div>
 		</div>
 		<% end %>
 	</div>

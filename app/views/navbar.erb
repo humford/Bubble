@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-        <a href="#" style="width: 128px;color: white;text-decoration: none;"><img src="images/logo.png" style="margin-top: -13px;margin-left: -4px;">Bubble</a>
+        <a href="#" style="width: 128px;color: white;text-decoration: none;"><img src="/images/logo.png" style="margin-top: -13px;margin-left: -4px;">Bubble</a>
       </div>
     </div>
 
@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="/">Home <!--<span class="sr-only">(current)</span>--></a></li>
 			<% if session[:user_id] != nil %>
-			<li><a href="/profile/show/<%= @user.id%>">Profile</a></li>
+			<li><a href="/profile/show/<%=session[:user_id] %>">Profile</a></li>
 			<li><a href="/mybubbles">Manage Bubbles</a></li>
 			<li><a href="/explore">Explore</a></li>
         <li class="dropdown">
