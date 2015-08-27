@@ -35,13 +35,21 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/bubble/create" do
+      @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :bubble_creator_id => session[:user_id], :bubble_votes => 0})
+      @bubble.save
+      redirect "/bubble/show/#{@bubble.id}"
   end
 
   post "/post/create" do
+
+      @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
+      @post.save
+      redirect "/"
+
   end
 
   get "/bubble/new" do
-	erb :newbubble
+      erb :newbubble
   end
 
   get "/post/new" do
@@ -60,7 +68,7 @@ class ApplicationController < Sinatra::Base
     erb :profile
   end
 
-  get "/bubble/show/:id" do
+    get "/bubble/show/:id" do
 	  @bubble = Bubble.find_by({:id => params[:id]})
 	  erb :bubble
   end
