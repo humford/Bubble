@@ -9,37 +9,32 @@
 
     <!-- Bootstrap -->
     <link href="css/slate.bootstrap.min.css" rel="stylesheet">
-
-	  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
-	  <script>
-      $(function(){
-        $("#navbar").load("/navbar");
-      });
-    </script>
-
+	 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
+	 <%= erb :navbar %>
   </head>
   <body>
 	  <div class="container">
-      <div id="navbar"></div>
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <br>
-          <br>
-          <br>
-          <br>
-          <form action="/new_bubble" method="POST" align="center">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="New Bubble">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Create</button>
-              </span>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-4"></div>
-      </div>
-    </div>
+		<div id="navbar"></div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+
+                <form action="/bubble/create" method="POST" align="center">
+                    <div class="input-group">
+
+                    <input type="text" name= "bubble_name" class="form-control" placeholder="Bubble Name">
+                    <input type="text" name= "bubble_topics" class="form-control" placeholder="Bubble Topic">
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Create</button>
+                    </span>
+                    </div>
+                </form>
+
+			</div>
+			<div class="col-md-4"></div>
+	   </div>
+>>>>>>> 9739918405a9db6a6fe6574ded3f4e744e3db227
   </body>
 </html>

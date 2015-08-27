@@ -2,17 +2,15 @@
 <html>
    <head>
       <meta charset="UTF-8">
+       
       <title>Bubble</title>
-      <link rel="stylesheet" href="css/slate.bootstrap.min.css">
+      <link rel="stylesheet" href="css/cosmo.bootstrap.min.css">
       <link rel="stylesheet" href="css/style.css" type="text/css">
 
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
-       <script>
-       $(function(){
-         $("#login_form").load("/login_form");
-       });
-       </script>
+       
+       
 
    </head>
    <body align="center">
@@ -21,7 +19,7 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<div id="login_form"></div>
+				<%= erb :loginform %>
 			</div>
 			<div class="col-md-4"></div>
 	   </div>
