@@ -48,12 +48,6 @@ class ApplicationController < Sinatra::Base
 
   end
 
-  post "/user/create" do
-	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
-    @user.save
-    redirect "/"
-  end
-
   get "/bubble/new" do
       erb :newbubble
   end
@@ -62,15 +56,13 @@ class ApplicationController < Sinatra::Base
 	erb :newpost
   end
 
-<<<<<<< HEAD
+
   post "/user/create" do
       @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
     @user.save
     redirect "/"
   end
 
-=======
->>>>>>> origin/master
   get "/profile/show/:id" do
     @user = User.find_by({:id => params[:id]})
 #    @user_tweets = Tweet.where({:user_id => params[:id]})
