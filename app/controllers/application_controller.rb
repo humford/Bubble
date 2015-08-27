@@ -27,13 +27,16 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/bubble/create" do
+      @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :creator_id => session[:user_id], :bubble_votes => 0})
+      @bubble.save
+      redirect "/bubble/show/#{@bubble.id}"
   end
 
   post "/post/create" do
   end
 
   get "/bubble/new" do
-	erb :newbubble
+      erb :newbubble
   end
 
   get "/post/new" do
