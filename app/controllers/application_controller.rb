@@ -16,13 +16,13 @@ class ApplicationController < Sinatra::Base
 
   helpers do
 	  def home_posts(user_id)
-		  bubbles = Post.joins(:users, :bubbles).where("bubbles.user.id" == 1)
-		  posts = bubbles.post.all
+		  posts = Post.joins(:bubbles).where("bubbles.user.id" == user_id)
 		  return posts
      end
   end
 
   get "/" do
+	  @posts = home_posts(session[:user_id])
 	  erb :index
   end
   
@@ -41,11 +41,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/post/create" do
-
       @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
       @post.save
       redirect "/"
-
   end
 
   get "/bubble/new" do
@@ -65,13 +63,13 @@ class ApplicationController < Sinatra::Base
 
   get "/profile/show/:id" do
     @user = User.find_by({:id => params[:id]})
-#    @user_tweets = Tweet.where({:user_id => params[:id]})
+    @user_posts = Post.where({:user_id => params[:id]})
     erb :profile
   end
 
    get "/bubble/show/:id" do
 	  @bubble = Bubble.find_by({:id => params[:id]})
-		@bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
+	  @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
 	  erb :bubble
   end
 
