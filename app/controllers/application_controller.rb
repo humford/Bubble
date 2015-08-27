@@ -19,9 +19,18 @@ class ApplicationController < Sinatra::Base
 		  posts = Post.joins(:bubbles).where("bubbles.user.id" == user_id)
 		  return posts
      end
+	  def find_user(user_id)
+		  if user_id != nil
+			  user = User.find_by({:id => user_id})
+			  return user
+		  else
+			  return nil
+		  end
+	  end
   end
 
   get "/" do
+	  @user = find_user(session[:user_id])
 	  @posts = home_posts(session[:user_id])
 	  erb :index
   end
@@ -56,13 +65,13 @@ class ApplicationController < Sinatra::Base
 
 
   post "/user/create" do
-      @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
+    @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
     @user.save
     redirect "/"
   end
 
   get "/profile/show/:id" do
-    @user = User.find_by({:id => params[:id]})
+	 @user = find_user(session[:user_id])
     @user_posts = Post.where({:user_id => params[:id]})
     erb :profile
   end
