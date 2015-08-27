@@ -36,6 +36,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/mybubbles" do
+	 @user = find_user(session[:user_id])
+	 @posts = home_posts(session[:user_id])
+	 erb :mybubbles
   end
   
   get "/signup" do
@@ -44,6 +47,26 @@ class ApplicationController < Sinatra::Base
 
   get "/navbar" do
 	  erb :navbar
+  end
+
+  get "/bubble/new" do
+      erb :newbubble
+  end
+
+  get "/post/new" do
+	  @user = find_user(session[:user_id])
+	  @posts = home_posts(session[:user_id])
+	  erb :newpost
+  end
+
+
+  post "/user/create" do
+    @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
+    @user.save
+	 @bubble = Bubble.find_by({:bubble_name => "Flatiron School"})
+	 @bubble.users << @user
+	 @bubble.save
+    redirect "/"
   end
 
   post "/bubble/create" do
@@ -55,22 +78,10 @@ class ApplicationController < Sinatra::Base
   post "/post/create" do
       @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
       @post.save
+	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
+	   @bubble.posts << @post
+	   @bubble.save
       redirect "/"
-  end
-
-  get "/bubble/new" do
-      erb :newbubble
-  end
-
-  get "/post/new" do
-	erb :newpost
-  end
-
-
-  post "/user/create" do
-    @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
-    @user.save
-    redirect "/"
   end
 
   get "/profile/show/:id" do
