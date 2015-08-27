@@ -56,8 +56,9 @@ class ApplicationController < Sinatra::Base
 	erb :newpost
   end
 
+
   post "/user/create" do
-	 @user = User.new({:username => params[:username], :email => params[:email], :password => params[:password]})
+      @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
     @user.save
     redirect "/"
   end
@@ -90,10 +91,6 @@ class ApplicationController < Sinatra::Base
   get "/logout" do
     session.clear
     redirect "/"
-  end
-
-  get "/login_form" do
-	  erb :loginform
   end
 
 end
