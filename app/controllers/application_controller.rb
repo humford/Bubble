@@ -68,8 +68,9 @@ class ApplicationController < Sinatra::Base
     erb :profile
   end
 
-    get "/bubble/show/:id" do
+   get "/bubble/show/:id" do
 	  @bubble = Bubble.find_by({:id => params[:id]})
+		@bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
 	  erb :bubble
   end
 

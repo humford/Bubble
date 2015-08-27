@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	has_many :memberships
 	has_many :posts
 	has_many :bubbles, through: :memberships
-	has_many :articles, through: :memberships, :foreign_key => :user_id
+#	has_many :articles, through: :memberships, :foreign_key => :user_id
 
   validates :username,
     presence: true,
