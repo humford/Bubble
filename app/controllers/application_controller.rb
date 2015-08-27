@@ -14,6 +14,14 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "Chattr"
   end
 
+  helpers do
+	  def home_posts(user_id)
+		  bubbles = Post.joins(:users, :bubbles).where("bubbles.user.id" == 1)
+		  posts = bubbles.post.all
+		  return posts
+     end
+  end
+
   get "/" do
 	  erb :index
   end
@@ -82,3 +90,4 @@ class ApplicationController < Sinatra::Base
 
 end
 
+#All posts which are in one or more of the bubbles in all bubbles that have a member with 'userid'
