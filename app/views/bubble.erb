@@ -25,6 +25,17 @@
 				<br>
 				<br>
 				<br>
+        <% unless @user.bubbles.include?(@bubble)%>
+	      	<form action="/bubble/join" method="POST">
+		     	 <div class="input-group">
+				     <input type="hidden" name="bubble" value="<%=bubble.bubble_name %>">
+			        	<span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                </span>
+			     </div>
+		      </form>
+        <br>
+		    <% end %>
 				<%= erb :bubble_posts %>
 			</div>
 			<div class="col-md-1"></div>
