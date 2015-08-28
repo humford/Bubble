@@ -19,8 +19,9 @@
         <li class=""><a href="/">Home <!--<span class="sr-only">(current)</span>--></a></li>
 			<% if session[:user_id] != nil %>
 			<li><a href="/profile/show/<%=session[:user_id] %>">Profile</a></li>
-			<li><a href="/mybubbles">Manage Bubbles</a></li>
+			<li><a href="/mybubbles">Bubbles</a></li>
 			<li><a href="/explore">Explore</a></li>
+<!--
         <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New... <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -33,6 +34,7 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
+-->
 		  <% end %>
       </ul>
 <!--

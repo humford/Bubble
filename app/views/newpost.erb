@@ -27,23 +27,30 @@
 				<br>
 				<br>
 				<form action="/post/create" method="POST" align="center">
-				   <div class="input-group">
-
-              		   <input type="text" name="post_text" class="form-control" placeholder="Enter your message here">
-                       <input type="file" name="post_media" class="form-control" placeholder="Post media here">
-                       <input type="text" name="post_topic" class="form-control" placeholder="What is the topic of this post?">
-                       <input type="text" name="post_type" class="form-control" placeholder="What type of post is this?">
-						<select name="bubble" class="form-control">
-							<% Bubble.all.each do |bubble| %>
-							<option>  <%= bubble.bubble_name %> </option>
-				      	<% end %>
-			      	</select>
-
-              		<span class="input-group-btn">
-                		<button class="btn btn-default" type="submit">Post</button>
-              		</span>
-            	   </div>
-				 </form>
+						  <h3 align="center">Make a new post</h3>
+						 <br>
+                    <div class="input-group">
+  								<span class="input-group-addon" id="basic-addon1">Post Text</span>
+<!--  								<input name="post_text" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">-->
+							  <textarea name="post_text" type="text" cols="40" rows="3" class="form-control" placeholder="" aria-describedby="basic-addon1"></textarea>
+						  </div>
+							<div class="input-group">
+  								<span class="input-group-addon" id="basic-addon1">Media</span>
+  								<input name="post_media" type="file" class="form-control" placeholder="" aria-describedby="basic-addon1">
+						  </div>
+							<div class="input-group">
+  								<span class="input-group-addon" id="basic-addon1">Topics</span>
+  								<input name="post_topic" type="text" class="form-control" placeholder="What's this post about?" aria-describedby="basic-addon1">
+						  </div>
+					<div class="input-group">
+  								<span class="input-group-addon" id="basic-addon1">Post Type</span>
+  								<input name="post_type" type="text" class="form-control" placeholder="Text or Media or Both" aria-describedby="basic-addon1">
+						  </div>
+						 <br>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Create</button>
+                    </span>
+                </form>
 
 
 			</div>

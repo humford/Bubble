@@ -13,11 +13,11 @@
 
 	 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
-	 <%= erb :navbar %>
+
   </head>
   <body>
 	  <div class="container">
-		<div id="navbar"></div>
+		<%= erb :navbar %>
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
@@ -25,21 +25,29 @@
 				<br>
 				<br>
 				<br>
-
                 <form action="/bubble/create" method="POST" align="center">
+						  <h3 align="center">Make a new bubble</h3>
+						 <br>
                     <div class="input-group">
-
-                    <input type="text" name= "bubble_name" class="form-control" placeholder="Bubble Name">
-                    <input type="text" name= "bubble_topics" class="form-control" placeholder="Bubble Topic">
-
+  								<span class="input-group-addon" id="basic-addon1">Bubble Name</span>
+  								<input name="bubble_name" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+						  </div>
+						 <div class="input-group">
+<!--
+  								<span class="input-group-addon" id="basic-addon1">Bubble Description</span>
+  								<input name="bubble_topics" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+-->
+							   <textarea name="bubble_topics" type="text" cols="40" rows="3" class="form-control" placeholder="Bubble Description" aria-describedby="basic-addon1"></textarea>
+						 </div>
+						 <br>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Create</button>
                     </span>
-                    </div>
                 </form>
 
 			</div>
 			<div class="col-md-4"></div>
 	   </div>
+	  </div>
   </body>
 </html>

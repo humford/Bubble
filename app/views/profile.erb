@@ -31,6 +31,8 @@
             <h3>Phone number: <span><%= @user.phone%></span></h3>
             <h3>User Score: <span><%= @user.user_score%></span></h3>
 				<br>
+				<div class="text-center"><a href="/post/new"><button align="center" type="button" class="btn btn-primary btn-lg">New Post</button></a></div>
+				<br>
 				<h2 align="center">Your Posts:</h3>
 				<br>
 				<% @user.posts.reverse[0..19].each do |post|%>
