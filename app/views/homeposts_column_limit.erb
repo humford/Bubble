@@ -1,7 +1,4 @@
 <% if session[:user_id] != nil %>
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
 		<% @posts.reverse.each do |post| %>
 		<div class="panel panel-default">
   			<div class="panel-heading">
@@ -16,13 +13,7 @@
 			<% end %> at <%=post.created_at%></div>
 		</div>
 		<% end %>
-	</div>
-	<div class="col-md-1"></div>
-</div>
 <% else %>
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
 		<% Post.all.reverse.each do |post| %>
 		<div class="panel panel-default">
   			<div class="panel-heading">
@@ -37,7 +28,4 @@
 			<% end %> at <%=post.created_at%></div>
 		</div>
 		<% end %>
-	</div>
-	<div class="col-md-1"></div>
-</div>
 <% end %>

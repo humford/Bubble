@@ -15,8 +15,12 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-	  def home_posts(user_id)
-		  posts = Post.joins(:bubbles).where("bubbles.user.id" == user_id)
+	  def home_posts(user_id, limit=0)
+		  if limit < 1
+		  	  posts = Post.joins(:bubbles).where("bubbles.user.id" == user_id)
+		  else
+			  posts = Post.joins(:bubbles).where("bubbles.user.id" == user_id).limit(limit)
+		  end
 		  return posts
      end
 	  def find_user(user_id)
@@ -37,7 +41,7 @@ class ApplicationController < Sinatra::Base
 
   get "/mybubbles" do
 	 @user = find_user(session[:user_id])
-	 @posts = home_posts(session[:user_id])
+	 @posts = home_posts(session[:user_id], 10)
 	 erb :mybubbles
   end
   
@@ -50,6 +54,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/bubble/new" do
+	   @user = find_user(session[:user_id])
+	   @posts = home_posts(session[:user_id])
       erb :newbubble
   end
 
@@ -70,9 +76,20 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/bubble/create" do
-      @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :bubble_creator_id => session[:user_id], :bubble_votes => 0})
-      @bubble.save
+      @user = find_user(session[:user_id])
+	   @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :bubble_creator_id => session[:user_id], :bubble_votes => 0})
+	   @bubble.users << @user
+	   @bubble.save
       redirect "/bubble/show/#{@bubble.id}"
+  end
+
+  post "/post/create/quick" do
+      @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text]})
+      @post.save
+	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
+	   @bubble.posts << @post
+	   @bubble.save
+	   redirect "/mybubbles"
   end
 
   post "/post/create" do
