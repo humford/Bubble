@@ -62,7 +62,7 @@ class ApplicationController < Sinatra::Base
 	  @user = find_user(session[:user_id])
 	  erb :explore
   end
-  
+
   get "/signup" do
     erb :signup
   end
@@ -132,10 +132,14 @@ class ApplicationController < Sinatra::Base
   end
 
    get "/bubble/show/:id" do
-	  @user = find_user(session[:user_id])
-	  @bubble = Bubble.find_by({:id => params[:id]})
-	  @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
-	  erb :bubble
+     if session[:user_id] != nil
+       @user = find_user(session[:user_id])
+	     @bubble = Bubble.find_by({:id => params[:id]})
+	     @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
+	     erb :bubble
+     else
+       redirect "/signup"
+     end
   end
 
   get "/post/show/:id" do
