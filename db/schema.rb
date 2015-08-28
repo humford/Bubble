@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826144701) do
+ActiveRecord::Schema.define(version: 20150828140831) do
 
   create_table "bubble_posts", force: :cascade do |t|
     t.integer  "user_id"
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20150826144701) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "password"
     t.string   "realname"
     t.string   "email"
     t.string   "phone"
     t.integer  "user_score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "password_hash"
   end
 
 end

@@ -4,6 +4,17 @@ class User < ActiveRecord::Base
 	has_many :bubbles, through: :memberships
 #	has_many :articles, through: :memberships, :foreign_key => :user_id
 
+	include BCrypt
+
+	def password
+    	@password = Password.new(password_hash)
+  	end
+
+	def password=(new_password)
+    	@password = Password.create(new_password)
+		self.password_hash = @password
+	end
+
   validates :username,
     presence: true,
     format: { with: /\A([a-z]|[1-9])+\Z/i,
