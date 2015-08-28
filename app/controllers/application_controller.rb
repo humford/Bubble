@@ -125,6 +125,14 @@ class ApplicationController < Sinatra::Base
     erb :post
   end
 
+	get "/bubble/join" do
+		@bubble = Bubble.find_by({:bubble_name => params[:bubble]})
+		@user = find_user(session[:user_id])
+		@bubble.users << @user
+		@bubble.save
+		redirect "/bubble/show/#{@bubble.id}"
+	end
+
   post "/login" do
 	 @user = User.find_by({:username => params[:username], :password => params[:password]})
     if @user #exists

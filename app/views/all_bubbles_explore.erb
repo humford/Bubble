@@ -1,0 +1,44 @@
+<% Bubble.all.reverse.each do |bubble| %>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+	<div class="panel-heading"><h2 class="panel-title">
+		<strong><a href="/bubble/show/<%=bubble.id %>" class="plain-link"><%=bubble.bubble_name %></a></strong></h2>
+
+		<% unless @user.bubbles.include?(bubble)%>
+		<br>
+		<form action="/bubble/join" method="POST">
+			 <div class="input-group">
+				 <input type="hidden" name="bubble" value="<#%=bubble.bubble_name %>">
+				<span class="input-group-btn">
+               <button class="btn btn-primary btn-sm" type="submit">Join</button>
+            </span>
+			 </div>
+		  </form>
+		<% end %>
+
+	</div>
+  <div class="panel-body">
+	  <p><%=bubble.bubble_topics %></p>
+	  <p>This is a bubble, it is a self contained community for sharing content.</p>
+	  Recent posts:
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+	  <% bubble.posts.reverse[0..4].each do |post| %>
+	  <li class="list-group-item"><strong><%=post.user.username %>:</strong> <%=post.post_text %></li>
+	  <% end %>
+	  <li class="list-group-item">
+		  <form action="/post/create/quick" method="POST" align="center">
+			 <div class="input-group">
+				<input type="text" name="post_text" class="form-control" placeholder="Make a quick post">
+				 <input type="hidden" name="bubble" value="<#%=bubble.bubble_name %>">
+				<span class="input-group-btn">
+               <button class="btn btn-default" type="submit">Submit</button>
+            </span>
+			 </div>
+		  </form>
+	  </li>
+  </ul>
+</div>
+<% end %>
