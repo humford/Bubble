@@ -10,7 +10,7 @@
   			<div class="panel-body">
 				<%=post.post_text %>
   			</div>
-			<div class="panel-footer">
+			<div class="panel-footer dateline">
 			<strong>Posted in:</strong> <% post.bubbles.reverse.each do |bubble|%>
 			<%=bubble.bubble_name + "  " %>
 			<% end %> at <%=post.created_at%></div>
