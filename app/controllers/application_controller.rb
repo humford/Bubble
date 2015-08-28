@@ -44,6 +44,11 @@ class ApplicationController < Sinatra::Base
 	 @posts = home_posts(session[:user_id], 10)
 	 erb :mybubbles
   end
+
+  get "/explore" do
+	  @user = find_user(session[:user_id])
+	  erb :explore
+  end
   
   get "/signup" do
     erb :signup

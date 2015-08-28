@@ -12,30 +12,24 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 
 	 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">	</script>
 
   </head>
   <body>
 	  <div class="container">
-		<%= erb :navbar %>
-		<br>
-		<br>
-		<br>
-		<br>
-		  <div class="row">
+	  <%= erb :navbar %>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col-md-4">
-				<h2 align="center">Feed</h2>
+			<div class="col-md-10">
+				<h2 align="center">Hot Bubbles</h3>
 				<br>
-				<%= erb :homeposts_column %>
-			</div>
-			<div class="col-md-6">
-				<h2 align="center">Your Bubbles</h2>
-				<br>
-				<%= erb :user_bubbles %>
+				<%= erb :all_bubbles %>
 			</div>
 			<div class="col-md-1"></div>
 	   </div>
-	  </div>
   </body>
 </html>

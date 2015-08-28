@@ -31,7 +31,8 @@
             <h3>Phone number: <span><%= @user.phone%></span></h3>
             <h3>User Score: <span><%= @user.user_score%></span></h3>
 				<br>
-				<h3 align="center">Posts:</h3>
+				<h2 align="center">Posts:</h3>
+				<br>
 				<% @user.posts.reverse[0..19].each do |post|%>
 					<div class="panel panel-default">
 						<div class="panel-body">

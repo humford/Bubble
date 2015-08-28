@@ -33,6 +33,9 @@
   						<p class="text-center"><a class="btn btn-primary btn-lg" href="/signup" role="button">Sign Up</a></p>
 				 	</div>
 				 <br>
+				 <% else %>
+				 <h2 align="center">Hi, <strong><%=@user.realname %></strong></h2>
+				 <br>
 				 <% end %>
 			 </div>
 			 <div class="col-md-1"></div>
