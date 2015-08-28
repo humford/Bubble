@@ -88,9 +88,9 @@ class ApplicationController < Sinatra::Base
 	 @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone]})
 	 @user.password = params[:password]
     @user.save
-#	 @bubble = Bubble.find_by({:bubble_name => "Flatiron School"})
-#	 @bubble.users << @user
-#	 @bubble.save
+	 @bubble = Bubble.find_by({:bubble_name => "The Flatiron School"})
+	 @bubble.users << @user
+	 @bubble.save
 	 session[:user_id] = @user.id
     redirect "/"
   end
@@ -144,7 +144,7 @@ class ApplicationController < Sinatra::Base
     erb :post
   end
 
-	get "/bubble/join" do
+	post "/bubble/join" do
 		@bubble = Bubble.find_by({:bubble_name => params[:bubble]})
 		@user = find_user(session[:user_id])
 		@bubble.users << @user
