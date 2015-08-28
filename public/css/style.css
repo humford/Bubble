@@ -1,18 +1,20 @@
-/*
+
 @import url(https://fonts.googleapis.com/css?family=Passion+One);
 h1{
     font-family: 'Passion One', cursive;
     font-size: 500%;
     color: aliceblue;
+    text-shadow: -2px -2px 2px rgba(0, 0, 0, 1);
 }
 #landing{
     font-family: 'Helvetica', sans-serif;
     color: aliceblue;
 }
-*/
+
 
 body {
-    background-color: rgb(191, 200, 224);
+    background-color: #56A0D3 ;
+
 }
 
 .plain-link {
@@ -27,11 +29,11 @@ a:hover {
 a:active {
     text-decoration: none;
 }
-/*
+
 .jumbotron{
-    background-color: #00a7f2;
+    background-color: #008bc9;
     color:aliceblue;
-    outline-color: #00a7f2;
+    outline-color: #008bc9;
 }
 
 .text-center{
