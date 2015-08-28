@@ -48,7 +48,7 @@
 						  </div>
 							<div class="input-group">
   								<span class="input-group-addon" id="basic-addon1">Bubbles</span>
-								<select class="form-control">
+								<select multiple class="form-control">
 									<% @user.bubbles.each do |bubble| %>
 									<option value="<%=bubble.bubble_name %>"><%=bubble.bubble_name %></option>
 									<% end %>
