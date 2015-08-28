@@ -4,7 +4,8 @@ gem "sinatra"
 gem "activerecord"
 gem "sinatra-activerecord"
 gem "rake"
-gem 'bcrypt'
+gem "bcrypt"
+gem "pg"
 
 group :development do
   gem "shotgun"
