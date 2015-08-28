@@ -119,6 +119,12 @@ class ApplicationController < Sinatra::Base
 	  erb :bubble
   end
 
+  get "/post/show/:id" do
+	 @user = find_user(session[:user_id])
+	 @post = Post.find_by({:id => params[:id]})
+    erb :post
+  end
+
   post "/login" do
 	 @user = User.find_by({:username => params[:username], :password => params[:password]})
     if @user #exists
