@@ -1,7 +1,7 @@
 <% Bubble.all.reverse.each do |bubble| %>
 <div class="panel panel-default">
   <!-- Default panel contents -->
-	<div class="panel-heading"><h2 class="panel-title"><strong><%=bubble.bubble_name %></strong></h2></div>
+	<div class="panel-heading"><h2 class="panel-title"><strong><a href="/bubble/show/<%=bubble.id %>" class="plain-link"><%=bubble.bubble_name %></a></strong></h2></div>
   <div class="panel-body">
 	  <p><%=bubble.bubble_topics %></p>
 	  <p>This is a bubble, it is a self contained community for sharing content.</p>

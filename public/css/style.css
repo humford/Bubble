@@ -15,6 +15,18 @@ body {
     background-color: rgb(191, 200, 224);
 }
 
+.plain-link {
+	text-decoration: none;
+	color: rgb(44, 62, 80);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
 /*
 .jumbotron{
     background-color: #00a7f2;
