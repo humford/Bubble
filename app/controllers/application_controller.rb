@@ -99,11 +99,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/post/create" do
-      @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
+     puts params
+	  @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
       @post.save
-	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
-	   @bubble.posts << @post
-	   @bubble.save
+	   params[:bubble].each do |bubble|
+			@bubble = Bubble.find_by({:bubble_name => bubble})
+	   	@bubble.posts << @post
+	   	@bubble.save
+		end
       redirect "/"
   end
 
