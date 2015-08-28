@@ -91,6 +91,7 @@ class ApplicationController < Sinatra::Base
   post "/post/create/quick" do
       @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text]})
       @post.save
+	  ## :bubble.each do |name|
 	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
 	   @bubble.posts << @post
 	   @bubble.save
