@@ -94,7 +94,7 @@ class ApplicationController < Sinatra::Base
 	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
 	   @bubble.posts << @post
 	   @bubble.save
-	   redirect "/mybubbles"
+	   redirect "/bubble/show/#{@bubble.id}"
   end
 
   post "/post/create" do
@@ -113,6 +113,7 @@ class ApplicationController < Sinatra::Base
   end
 
    get "/bubble/show/:id" do
+	  @user = find_user(session[:user_id])
 	  @bubble = Bubble.find_by({:id => params[:id]})
 	  @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
 	  erb :bubble
