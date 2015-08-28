@@ -32,7 +32,7 @@
                     <div class="input-group">
   								<span class="input-group-addon" id="basic-addon1">Post Text</span>
 <!--  								<input name="post_text" type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">-->
-							  <textarea name="post_text" type="text" cols="40" rows="3" class="form-control" placeholder="" aria-describedby="basic-addon1"></textarea>
+							  <textarea name="post_text" type="text" rows="3" class="form-control" placeholder="" aria-describedby="basic-addon1"></textarea>
 						  </div>
 							<div class="input-group">
   								<span class="input-group-addon" id="basic-addon1">Media</span>
@@ -42,9 +42,17 @@
   								<span class="input-group-addon" id="basic-addon1">Topics</span>
   								<input name="post_topic" type="text" class="form-control" placeholder="What's this post about?" aria-describedby="basic-addon1">
 						  </div>
-					<div class="input-group">
+							<div class="input-group">
   								<span class="input-group-addon" id="basic-addon1">Post Type</span>
   								<input name="post_type" type="text" class="form-control" placeholder="Text or Media or Both" aria-describedby="basic-addon1">
+						  </div>
+							<div class="input-group">
+  								<span class="input-group-addon" id="basic-addon1">Bubbles</span>
+								<select class="form-control">
+									<% @user.bubbles.each do |bubble| %>
+									<option value="<%=bubble.bubble_name %>"><%=bubble.bubble_name %></option>
+									<% end %>
+								</select>
 						  </div>
 						 <br>
                     <span class="input-group-btn">
