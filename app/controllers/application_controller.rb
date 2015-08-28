@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, "public"
     set :views, "app/views"
 	 enable :sessions
-    set :session_secret, "Chattr"
+	  set :session_secret, "Bubble"
   end
 
   helpers do
@@ -23,6 +23,7 @@ class ApplicationController < Sinatra::Base
 		  end
 		  return posts
      end
+
 	  def find_user(user_id)
 		  if user_id != nil
 			  user = User.find_by({:id => user_id})
@@ -31,6 +32,18 @@ class ApplicationController < Sinatra::Base
 			  return nil
 		  end
 	  end
+
+	  def login?
+    	if session[:username].nil?
+        return false
+      else
+        return true
+       end
+     end
+
+     def username
+       return session[:username]
+     end
   end
 
   get "/" do
@@ -72,11 +85,13 @@ class ApplicationController < Sinatra::Base
 
 
   post "/user/create" do
-    @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone], :password => params[:password]})
+	 @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone]})
+	 @user.password = params[:password]
     @user.save
-	 @bubble = Bubble.find_by({:bubble_name => "Flatiron School"})
-	 @bubble.users << @user
-	 @bubble.save
+#	 @bubble = Bubble.find_by({:bubble_name => "Flatiron School"})
+#	 @bubble.users << @user
+#	 @bubble.save
+	 session[:user_id] = @user.id
     redirect "/"
   end
 
@@ -138,17 +153,12 @@ class ApplicationController < Sinatra::Base
 	end
 
   post "/login" do
-	 @user = User.find_by({:username => params[:username], :password => params[:password]})
-    if @user #exists
-      #start session
+	 @user = User.find_by(:username => params[:username])
+    if @user.password == params[:password]
       session[:user_id] = @user.id
-	 else
-      #throw an error
-      @account_fail = true
-		puts "LOGIN FAILED"
-      redirect "/"
+		redirect "/profile/show/#{session[:user_id]}"
     end
-    redirect "/profile/show/#{@user.id}"
+	 erb :error
   end
 
   get "/logout" do
