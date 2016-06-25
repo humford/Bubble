@@ -68,65 +68,64 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/navbar" do
-	  erb :navbar
+    erb :navbar
   end
 
   get "/bubble/new" do
-	   @user = find_user(session[:user_id])
-	   @posts = home_posts(session[:user_id])
-      erb :newbubble
+    @user = find_user(session[:user_id])
+    @posts = home_posts(session[:user_id])
+    erb :newbubble
   end
 
   get "/post/new" do
-	  @user = find_user(session[:user_id])
-	  @posts = home_posts(session[:user_id])
-	  erb :newpost
+    @user = find_user(session[:user_id])
+    @posts = home_posts(session[:user_id])
+    erb :newpost
   end
 
 
   post "/user/create" do
-	 @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone]})
-	 @user.password = params[:password]
+    @user = User.new({:username => params[:username], :email => params[:email], :realname => params[:realname], :phone => params[:phone]})
+    @user.password = params[:password]
     @user.save
-	 @bubble = Bubble.find_by({:bubble_name => "The Flatiron School"})
-	 @bubble.users << @user
-	 @bubble.save
-	 session[:user_id] = @user.id
+    @bubble = Bubble.find_by({:bubble_name => "The Flatiron School"})
+    @bubble.users << @user
+    @bubble.save
+    session[:user_id] = @user.id
     redirect "/"
   end
 
   post "/bubble/create" do
-      @user = find_user(session[:user_id])
-	   @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :bubble_creator_id => session[:user_id], :bubble_votes => 0})
-	   @bubble.users << @user
-	   @bubble.save
-      redirect "/bubble/show/#{@bubble.id}"
+    @user = find_user(session[:user_id])
+    @bubble = Bubble.new ({:bubble_name => params[:bubble_name], :bubble_topics => params[:bubble_topics], :bubble_creator_id => session[:user_id], :bubble_votes => 0})
+    @bubble.users << @user
+    @bubble.save
+    redirect "/bubble/show/#{@bubble.id}"
   end
 
   post "/post/create/quick" do
-      @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text]})
-      @post.save
-	  ## :bubble.each do |name|
-	   @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
-	   @bubble.posts << @post
-	   @bubble.save
-	   redirect "/bubble/show/#{@bubble.id}"
+    @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text]})
+    @post.save
+    @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
+    @bubble.posts << @post
+    @bubble.save
+    redirect "/bubble/show/#{@bubble.id}"
   end
 
   post "/post/create" do
-     puts params
-	  @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
-      @post.save
-	   params[:bubble].each do |bubble|
-			@bubble = Bubble.find_by({:bubble_name => bubble})
-	   	@bubble.posts << @post
-	   	@bubble.save
-		end
-      redirect "/"
+    puts params
+    @post = Post.new ({:user_id => session[:user_id], :post_text => params[:post_text], :post_media => params[:post_media], :post_score => 0, :post_topics => params[:post_topics], :post_type => params[:post_type]})
+    @post.save
+    params[:bubble].each do |bubble|
+      @bubble = Bubble.find_by({:bubble_name => bubble})
+      @bubble.posts << @post
+      @bubble.save
+    end
+    redirect "/"
   end
 
   get "/profile/show/:id" do
-	 @user = find_user(session[:user_id])
+    @user = find_user(session[:user_id])
     @user_posts = Post.where({:user_id => params[:id]})
     erb :profile
   end
@@ -134,35 +133,35 @@ class ApplicationController < Sinatra::Base
    get "/bubble/show/:id" do
      if session[:user_id] != nil
        @user = find_user(session[:user_id])
-	     @bubble = Bubble.find_by({:id => params[:id]})
-	     @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
-	     erb :bubble
+	   @bubble = Bubble.find_by({:id => params[:id]})
+	   @bubble_posts = Post.joins(:bubbles).where(:bubble_id == @bubble.id)
+	   erb :bubble
      else
        redirect "/signup"
      end
   end
 
   get "/post/show/:id" do
-	 @user = find_user(session[:user_id])
-	 @post = Post.find_by({:id => params[:id]})
+    @user = find_user(session[:user_id])
+    @post = Post.find_by({:id => params[:id]})
     erb :post
   end
 
-	post "/bubble/join" do
-		@bubble = Bubble.find_by({:bubble_name => params[:bubble]})
-		@user = find_user(session[:user_id])
-		@bubble.users << @user
-		@bubble.save
-		redirect "/bubble/show/#{@bubble.id}"
-	end
+  post "/bubble/join" do
+    @bubble = Bubble.find_by({:bubble_name => params[:bubble]})
+    @user = find_user(session[:user_id])
+    @bubble.users << @user
+    @bubble.save
+    redirect "/bubble/show/#{@bubble.id}"
+  end
 
   post "/login" do
-	 @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
     if @user.password == params[:password]
       session[:user_id] = @user.id
-		redirect "/profile/show/#{session[:user_id]}"
+      redirect "/profile/show/#{session[:user_id]}"
     end
-	 erb :error
+    erb :error
   end
 
   get "/logout" do
