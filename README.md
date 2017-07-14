@@ -12,3 +12,4 @@ or the people in it.
 1. Port to Rails
 2. Add integrations to other social networks
 3. Add images and other media
+4. Add geotagging
