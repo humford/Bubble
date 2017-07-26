@@ -14,3 +14,5 @@ or the people in it.
 3. Add images and other media
 4. Add geotagging
 5. Rehost on AWS with Kubernetes
+
+&copy; Henry Williams 2017
